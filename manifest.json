@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "調整影片速度",
-  "description": "調整影片撥放速度",
+  "description": "拉桿調整影片撥放速度",
   "version": "1.0.0",
   "icons": {
     "16": "setting.png",
