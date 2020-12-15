@@ -15,7 +15,7 @@
   "content_scripts": [
     {
       "js": [
-        "execute.js"
+        "exe.js"
       ]
     }
   ]
