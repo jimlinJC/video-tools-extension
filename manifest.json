@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "調整影片速度, 設定循環播放",
+  "name": "影片工具",
   "description": "拉桿調整影片撥放速度, 設定循環播放",
   "version": "1.1.0",
   "icons": {
