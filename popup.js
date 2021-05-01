@@ -4,8 +4,9 @@ var getSelectedTab = (tab) => {
     var tabId = tab.id;
     var slider = document.getElementById("range");
     var output = document.getElementById("output");
-    var checkbox = document.querySelector('input[type="checkbox"]');
-    output.innerHTML = slider.value; // Display the default slider value
+    var checkbox = document.getElementById('checkboxOfLoop');
+    var checkboxOfQuality = document.getElementById('checkboxOfQuality');
+    output.innerHTML = slider.value;
     var sendMessage = (messageObj) => chrome.tabs.sendMessage(tabId, messageObj, function (response) {
         if (response.content != "success!") {
             output.innerHTML = response.content;
@@ -17,9 +18,12 @@ var getSelectedTab = (tab) => {
         chrome.storage.sync.get(["checkbox"], function (items) {
             checkbox.checked = items.checkbox;
         });
-        sendMessage({ value: -1, isCheck: checkbox.checked});
+        chrome.storage.sync.get(["checkboxOfQuality"], (items) => {
+            checkboxOfQuality.checked = items.checkboxOfQuality;
+        });
+        sendMessage({ value: -1 });
         initialize = false;
-        
+
     }
 
     slider.oninput = function () {
@@ -29,13 +33,23 @@ var getSelectedTab = (tab) => {
 
     checkbox.addEventListener('change', function () {
         if (checkbox.checked) {
-            chrome.storage.sync.set({ "checkbox": true }, function () {
+            chrome.storage.sync.set({ "checkbox": true }, () => {
             });
         } else {
-            chrome.storage.sync.set({ "checkbox": false }, function () {
+            chrome.storage.sync.set({ "checkbox": false }, () => {
             });
         }
-    });
+    }, { once: false });
+
+    checkboxOfQuality.addEventListener('change', function () {
+        if (checkboxOfQuality.checked) {
+            chrome.storage.sync.set({ "checkboxOfQuality": true }, () => {
+            });
+        } else {
+            chrome.storage.sync.set({ "checkboxOfQuality": false }, () => {
+            });
+        }
+    }, { once: false });
 }
 
 
