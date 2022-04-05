@@ -6,6 +6,7 @@ var getSelectedTab = (tab) => {
     var output = document.getElementById("output");
     var checkbox = document.getElementById('checkboxOfLoop');
     var checkboxOfQuality = document.getElementById('checkboxOfQuality');
+    slider.focus();
     output.innerHTML = slider.value;
     var sendMessage = (messageObj) => chrome.tabs.sendMessage(tabId, messageObj, function (response) {
         if (response.content != "success!") {
